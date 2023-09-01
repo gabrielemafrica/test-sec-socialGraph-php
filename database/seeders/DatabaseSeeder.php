@@ -20,5 +20,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // Chiama i seeders personalizzati per popolare il database
+        $this -> call([
+            PeopleSeeder::class,
+            ConnectionsSeeder::class,
+            CitiesVisitedSeeder::class,
+
+        ]);
     }
 }

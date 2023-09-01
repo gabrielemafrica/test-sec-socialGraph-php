@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Definiamo una nuova classe Migration anonima
 return new class extends Migration
 {
     /**
@@ -13,15 +14,16 @@ return new class extends Migration
      */
     public function up()
     {
+        // Creiamo la tabella 'people' con i seguenti campi
         Schema::create('people', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Campo ID auto-incrementale
 
-            $table->string('firstName');
-            $table->string('surname');
-            $table->integer('age')->nullable();
-            $table->string('gender');
+            $table->string('firstName'); // Campo per il nome
+            $table->string('surname');   // Campo per il cognome
+            $table->integer('age')->nullable(); // Campo per l'età (può essere nullo)
+            $table->string('gender');   // Campo per il genere (maschio o femmina)
 
-            $table->timestamps();
+            $table->timestamps(); // Campi per la data di creazione e aggiornamento
         });
     }
 
@@ -32,6 +34,8 @@ return new class extends Migration
      */
     public function down()
     {
+        // Eliminiamo la tabella 'people' se esiste
         Schema::dropIfExists('people');
     }
 };
+
