@@ -14,14 +14,12 @@
                         <div
                             class="card {{ $person->gender == 'male' ? 'border-primary btn btn-primary' : 'border-danger btn btn-danger' }}">
                             <div class="card-body">
-
                                 {{ $person->firstName }} {{ $person->surname }}
-
                             </div>
                         </div>
                     </a>
                 </div>
             @endforeach
-
         </div>
-    @endsection
+    </div>
+@endsection

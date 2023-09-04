@@ -1,0 +1,45 @@
+
+
+            query corretta SQL trova amici
+        SELECT DISTINCT
+        P.id AS fof_id,
+        P.firstName AS fof_firstName,
+        P.surname AS fof_surname
+        FROM people AS P
+        JOIN connections AS C1 ON P.id = C1.person_id
+        JOIN connections AS C2 ON C1.friend_id = C2.person_id
+        WHERE C2.friend_id = 1
+        AND P.id <> 1
+        AND P.id NOT IN (
+            SELECT friend_id FROM connections WHERE person_id = 1
+        );
+
+
+
+            SQL per amici suggeriti
+        SELECT DISTINCT
+        P.id,
+        P.firstName,
+        P.surname
+        FROM people AS P
+        JOIN connections AS C1 ON P.id = C1.person_id
+        JOIN connections AS C2 ON C1.friend_id = C2.person_id
+        WHERE C2.friend_id = 20
+        AND P.id <> 20
+        AND P.id NOT IN (
+        SELECT friend_id FROM connections WHERE person_id = 20
+        )
+        AND P.id NOT IN (
+        SELECT friend_id FROM connections WHERE person_id = 20
+        )
+        AND P.id IN (
+        SELECT C3.person_id
+        FROM connections AS C3
+        WHERE C3.friend_id IN (
+            SELECT C4.friend_id
+            FROM connections AS C4
+            WHERE C4.person_id = 20
+        )
+        GROUP BY C3.person_id
+        HAVING COUNT(C3.friend_id) >= 2
+        );
