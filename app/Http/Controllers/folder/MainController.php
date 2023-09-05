@@ -52,11 +52,11 @@ class MainController extends Controller
                     ->from('connections')
                     ->where('person_id', $id);
             })
-            ->whereNotIn('people.id', function ($query) use ($id) {
-                $query->select('friend_id')
-                    ->from('connections')
-                    ->where('person_id', $id);
-            })
+            // ->whereNotIn('people.id', function ($query) use ($id) {
+            //     $query->select('friend_id')
+            //         ->from('connections')
+            //         ->where('person_id', $id);
+            // })
             ->whereIn('people.id', function ($subquery) use ($id) {
                 $subquery->select('C3.person_id')
                     ->from('connections AS C3')

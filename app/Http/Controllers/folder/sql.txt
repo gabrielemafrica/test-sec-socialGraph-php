@@ -29,9 +29,6 @@
         AND P.id NOT IN (
         SELECT friend_id FROM connections WHERE person_id = 20
         )
-        AND P.id NOT IN (
-        SELECT friend_id FROM connections WHERE person_id = 20
-        )
         AND P.id IN (
         SELECT C3.person_id
         FROM connections AS C3
